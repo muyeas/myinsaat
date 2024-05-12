@@ -10,15 +10,6 @@ const changeTextRoutes = require("./routes/changeText");
 const imageRoutes = require("./routes/images")
 const errorHandler = require("./middlewares/error");
 
-const admin = require("firebase-admin");
-
-const serviceAccount = require("./ServiceAccountKey.json");
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-   storageBucket: "gs://myinsaatresimler.appspot.com"
-});
-
 
 // Connect to DB
 connectDB();
