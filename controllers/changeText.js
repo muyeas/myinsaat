@@ -3,8 +3,9 @@ const Text = require("../models/Text");
 
 const getTexts = async (req, res, next) => {
   try {
+    console.log("Baslangic ",new Date().getSeconds())
     const texts = await Text.find();
-
+    console.log("Bitis ",new Date().getSeconds())
     res.status(200).json({
       success: true,
       texts,
