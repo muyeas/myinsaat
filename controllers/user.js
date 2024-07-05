@@ -1,7 +1,6 @@
 const User = require("../models/User");
 const authenticateJWT = require("../middlewares/authenticateJWT")
 
-
 const createUser = async (req, res, next) => {
   try {
     const { username, password } = req.body;

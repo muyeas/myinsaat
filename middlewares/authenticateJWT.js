@@ -1,27 +1,21 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');
-const secretKey = 'your_secret_key'; // Güvenli bir şekilde saklanmalıdır
+const secretKey = 'your_secret_key';
 
-const login = async (req, res, next) => {
-    const { username, password } = req.body;
+// Middleware for JWT authentication
+const authenticateJWT = (req, res, next) => {
+    const token = req.header('Authorization');
 
-    try {
-        const user = await User.findOne({ username });
-
-        if (!user || user.password !== password) {
-            return res.status(401).json({ message: 'Invalid username or password' });
-        }
-
-        // Kullanıcı doğrulandıktan sonra token oluştur
-        const token = jwt.sign({ id: user._id, username: user.username }, secretKey, { expiresIn: '1h' });
-
-        res.status(200).json({ token });
-    } catch (error) {
-        console.log(error);
-        return next(error);
+    if (token) {
+        jwt.verify(token, secretKey, (err, user) => {
+            if (err) {
+                return res.sendStatus(403);
+            }
+            req.user = user;
+            next();
+        });
+    } else {
+        res.sendStatus(401);
     }
 };
 
-module.exports = {
-    login
-};
+module.exports = authenticateJWT;
