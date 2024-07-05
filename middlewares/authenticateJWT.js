@@ -1,20 +1,21 @@
-const jwt = require('jsonwebtoken');
-const secretKey = 'your_secret_key';
+// authenticateJWT.js
 
-// Middleware for JWT authentication
+const jwt = require('jsonwebtoken');
+const secretKey = 'your_secret_key'; // Replace with your actual secret key
+
 const authenticateJWT = (req, res, next) => {
     const token = req.header('Authorization');
 
     if (token) {
-        jwt.verify(token, secretKey, (err, user) => {
+        jwt.verify(token, secretKey, (err, decoded) => {
             if (err) {
-                return res.sendStatus(403);
+                return res.status(403).json({ message: 'Token verification failed' });
             }
-            req.user = user;
+            req.user = decoded.user; // Store decoded user information
             next();
         });
     } else {
-        res.sendStatus(401);
+        res.status(401).json({ message: 'Unauthorized' });
     }
 };
 
