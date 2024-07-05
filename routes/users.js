@@ -7,6 +7,8 @@ const {
   getUsers
 } = require("../controllers/user");
 
+const User = require("../models/User");
+
 
 const router = express.Router();
 
