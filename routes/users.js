@@ -7,11 +7,14 @@ const {
   getUsers
 } = require("../controllers/user");
 
+const authenticateJWT = require('../middleware/authenticateJWT');
+
+
 
 const router = express.Router();
 
 // create a user
-router.post("/", createUser);
+router.post("/", authenticateJWT,createUser);
 
 // get all users
 router.get("/", getUsers);
