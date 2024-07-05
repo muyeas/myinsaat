@@ -7,7 +7,7 @@ const {
   getUsers
 } = require("../controllers/user");
 
-const authenticateJWT = require('../middleware/authenticateJWT');
+const authenticateJWT = require('../middlewares/authenticateJWT');
 
 
 
