@@ -9,7 +9,7 @@ const projectRoutes = require("./routes/projects");
 const changeTextRoutes = require("./routes/changeText");
 const imageRoutes = require("./routes/images")
 const errorHandler = require("./middlewares/error");
-
+const { login } = require('./controllers/authController');
 
 // Connect to DB
 connectDB();
@@ -21,6 +21,9 @@ const port = process.env.PORT || 5000;
 // middlewares
 app.use(cors());
 app.use(express.json());
+
+// Auth route
+app.post('/api/auth/login', login);
 
 // Routes
 app.use("/api/users", userRoutes);
