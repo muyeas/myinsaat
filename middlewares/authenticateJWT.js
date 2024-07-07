@@ -1,18 +1,17 @@
-// authenticateJWT.js
-
 const jwt = require('jsonwebtoken');
 const secretKey = 'your_secret_key'; // Replace with your actual secret key
 
 const authenticateJWT = (req, res, next) => {
-    const token = req.header('Authorization');
-    console.log('Kontrol Edilen Token: ', token);
+    const authHeader = req.headers.authorization;
 
-    if (token) {
-        jwt.verify(token, secretKey, (err, decoded) => {
+    if (authHeader) {
+        const token = authHeader.split(' ')[1];
+
+        jwt.verify(token, secretKey, (err, user) => {
             if (err) {
-                return res.status(403).json({ message: 'Token verification failed' });
+                return res.status(403).json({ message: 'Forbidden' });
             }
-            req.user = decoded.user; // Store decoded user information
+            req.user = user;
             next();
         });
     } else {
