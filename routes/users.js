@@ -26,7 +26,7 @@ router.post('/login', async (req, res) => {
   }
 
   const token = jwt.sign({ user }, 'your_secret_key', { expiresIn: '1h' });
-
+  console.log('token: ', token)
   res.json({ token });
 });
 // get all users
