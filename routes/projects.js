@@ -8,23 +8,25 @@ const {
     getProject,
     getProjects
 } = require("../controllers/project");
+const jwt = require('jsonwebtoken');
+const authenticateJWT = require("../middlewares/authenticateJWT")
 
 
 const router = express.Router();
 
 
-router.post("/addProject", createProject);
+router.post("/addProject", authenticateJWT,createProject);
 
 
-router.get("/getProjects", getProjects);
+router.get("/getProjects", authenticateJWT,getProjects);
 
 
-router.get("/getProject/:id", getProject);
+router.get("/getProject/:id", authenticateJWT,getProject);
 
 
-router.put("/updateProject/:id", updateProject);
+router.put("/updateProject/:id", authenticateJWT,updateProject);
 
 
-router.delete("/deleteProject/:id", deleteProject);
+router.delete("/deleteProject/:id", authenticateJWT,deleteProject);
 
 module.exports = router;
