@@ -120,9 +120,9 @@ const deleteUser = async (req, res, next) => {
 };
 
 module.exports = {
-  getUser: [authenticateJWT, getUser],
-  getUsers: [authenticateJWT, getUsers],
-  createUser: [authenticateJWT, createUser],
-  updateUser: [authenticateJWT, updateUser],
-  deleteUser: [authenticateJWT, deleteUser],
+  getUser,
+  getUsers,
+  createUser,
+  updateUser,
+  deleteUser,
 };

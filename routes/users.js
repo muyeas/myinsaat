@@ -9,6 +9,8 @@ const {
 
 const User = require("../models/User");
 const jwt = require('jsonwebtoken');
+const authenticateJWT = require("../middlewares/authenticateJWT")
+
 
 
 const router = express.Router();
@@ -30,15 +32,15 @@ router.post('/login', async (req, res) => {
   res.json({ token });
 });
 // get all users
-router.get("/", getUsers);
+router.get("/", authenticateJWT, getUsers);
 
 // get a user
-router.get("/:id", getUser);
+router.get("/:id",authenticateJWT,  getUser);
 
 // update a user
-router.put("/:id", updateUser);
+router.put("/:id", authenticateJWT, updateUser);
 
 // delete a user
-router.delete("/:id", deleteUser);
+router.delete("/:id", authenticateJWT, deleteUser);
 
 module.exports = router;
