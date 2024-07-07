@@ -6,15 +6,17 @@ const {
     getImages,
     createImage
 } = require("../controllers/image.js");
+const jwt = require('jsonwebtoken');
+const authenticateJWT = require("../middlewares/authenticateJWT")
 
 
 const router = express.Router();
 
 
-router.get("/getImages", getImages);
+router.get("/getImages", authenticateJWT, getImages);
 
-router.post("/createImage", createImage);
+router.post("/createImage", authenticateJWT, createImage);
 
-router.put("/updateImage/:id", updateImage);
+router.put("/updateImage/:id", authenticateJWT, updateImage);
 
 module.exports = router;

@@ -1,4 +1,6 @@
 const express = require("express");
+const jwt = require('jsonwebtoken');
+const authenticateJWT = require("../middlewares/authenticateJWT")
 
 
 const {
@@ -11,10 +13,10 @@ const {
 const router = express.Router();
 
 
-router.get("/getTexts", getTexts);
+router.get("/getTexts", authenticateJWT, getTexts);
 
-router.post("/createTexts", createText);
+router.post("/createTexts", authenticateJWT, createText);
 
-router.put("/updateTexts/:id", updateText);
+router.put("/updateTexts/:id", authenticateJWT, updateText);
 
 module.exports = router;
