@@ -5,6 +5,7 @@ const secretKey = 'your_secret_key'; // Replace with your actual secret key
 
 const authenticateJWT = (req, res, next) => {
     const token = req.header('Authorization');
+    console.log('Kontrol Edilen Token: ', token);
 
     if (token) {
         jwt.verify(token, secretKey, (err, decoded) => {
