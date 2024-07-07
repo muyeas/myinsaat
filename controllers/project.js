@@ -1,4 +1,5 @@
 const Project = require("../models/Projects");
+const authenticateJWT = require("../middlewares/authenticateJWT")
 
 const createProject = async (req, res, next) => {
   try {
@@ -136,9 +137,9 @@ const deleteProject = async (req, res, next) => {
 };
 
 module.exports = {
-    createProject,
-    updateProject,
-    deleteProject,
-    getProject,
-    getProjects
+  createProject: [authenticateJWT,createProject],
+  updateProject: [authenticateJWT, updateProject],
+  deleteProject: [authenticateJWT, deleteProject],
+  getProject:  [authenticateJWT, getProject],
+  getProjects: [authenticateJWT, getProjects]
 };
