@@ -13,7 +13,7 @@ const authenticateJWT = require("../middlewares/authenticateJWT")
 const router = express.Router();
 
 
-router.get("/getImages", authenticateJWT, getImages);
+router.get("/getImages",  getImages);
 
 router.post("/createImage", authenticateJWT, createImage);
 

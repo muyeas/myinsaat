@@ -18,10 +18,10 @@ const router = express.Router();
 router.post("/addProject", authenticateJWT,createProject);
 
 
-router.get("/getProjects", authenticateJWT,getProjects);
+router.get("/getProjects", getProjects);
 
 
-router.get("/getProject/:id", authenticateJWT,getProject);
+router.get("/getProject/:id",getProject);
 
 
 router.put("/updateProject/:id", authenticateJWT,updateProject);

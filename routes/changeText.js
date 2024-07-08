@@ -13,7 +13,7 @@ const {
 const router = express.Router();
 
 
-router.get("/getTexts", authenticateJWT, getTexts);
+router.get("/getTexts", getTexts);
 
 router.post("/createTexts", authenticateJWT, createText);
 
